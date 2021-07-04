@@ -1,0 +1,23 @@
+type: object
+properties:
+  object:
+    type: string
+    enum:
+      - "timesheet"
+  staff:
+      type: string
+      format: uuid
+  location:
+      type: string
+      format: uuid
+  segments:
+      type: array
+      items:
+          $ref: "#/components/schemas/createSegment"
+  source:
+      type: string
+      description: Identifier of API system (e.g. Time Clocks R Us)
+required:
+  - staff
+  - location
+  - segments

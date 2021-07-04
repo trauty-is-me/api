@@ -1,0 +1,27 @@
+type: object
+properties:
+    object:
+        type: string
+        enum:
+            - segment
+    start:
+        $ref: "#/components/schemas/datetime"
+    finish:
+        $ref: "#/components/schemas/datetime"
+    job:
+        type: string
+        nullable: true
+        format: uuid
+    break_type:
+        type: string
+        nullable: true
+        example: "unpaid"
+        enum:
+            - null
+            - unpaid
+    notes:
+        type: string
+        nullable: true
+required:
+  - start
+  - finish

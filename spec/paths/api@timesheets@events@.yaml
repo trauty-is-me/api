@@ -1,0 +1,54 @@
+post:
+    tags:
+        - Timesheets
+    summary: Create punch event
+    description: >-
+        Once a Timesheet event has been added it cannot be modified. Use this endpoint to upload real time timesheets, typically this would be to let Adi know about events as they happen.
+
+
+        Creating or updating an inprogress timesheet is done by event.
+
+
+        The events will need to be completed in a logical order. Starting a new shift will close any open shifts for that staff member
+
+
+        Break start can only be followed by break finish
+
+
+        Break finish can be followed by shift finish or change job.
+
+
+        Shift start and change job can be followed by shift finish, break start or job change
+
+
+        There is currently a limit to one break per shift. If you require multiple breaks you will need to create a new shift for any secondary breaks.
+
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/createEvent"
+    responses:
+        "201":
+            description: Timesheet Created
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            uuid:
+                                type: string
+                                format: uuid
+        "400":
+            $ref: "#/components/responses/400"
+        "401":
+            $ref: "#/components/responses/401"
+        "403":
+            $ref: "#/components/responses/403"
+        "404":
+            $ref: "#/components/responses/404"
+        5XX:
+            description: Unexpected Error

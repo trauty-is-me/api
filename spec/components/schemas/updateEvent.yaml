@@ -1,0 +1,34 @@
+type: object
+properties:
+    object:
+        type: string
+        enum: ["punchEvent"]
+    eventTime:
+        $ref: "#/components/schemas/datetime"
+    eventType:
+        type: string
+        enum:
+          - "Shift finish"
+          - "Break start"
+          - "Break finish"
+          - "Job change"
+    source:
+        type: string
+        description: Identifier of API system (e.g. Time Clocks R Us)
+    job:
+        type: string
+        format: uuid
+    break_type:
+        type: string
+        nullable: true
+        example: "unpaid"
+        enum:
+            - null
+            - unpaid
+    notes:
+        type: string
+
+required:
+  - eventTime
+  - eventType
+  - source

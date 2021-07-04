@@ -41,3 +41,21 @@ get:
             $ref: "#/components/responses/404"
         5XX:
             description: Unexpected Error
+
+post:
+    tags:
+        - Timesheets
+    summary: Create
+    description: >-
+        Once a Timesheet has been added it cannot be modified. Use this endpoint when uploading completed timesheets.
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/createTimesheet"
+    responses:
+        "302":
+            description: Redirection to batch processor status
